@@ -17,3 +17,11 @@ Vim :
 Kitty/ zsh-sorin :
 
 ![kitty-zsh-screen](/screenshots/kitty-zsh-screen.png)
+
+Some Packages that I really like :
+- celluliod
+- auto-cpufreq
+- ladspa, pulseaudioctl, pulseaudio-modules-bt
+- VDPAU
+- syncthing
+- ttf-zillaslab, ttf-hack
