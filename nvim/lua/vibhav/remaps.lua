@@ -17,7 +17,7 @@ vim.keymap.set("n", "<leader>P", ":Files<CR>") -- file search
 vim.keymap.set("i", "<C-h>", "<C-o>^")
 vim.keymap.set("i", "<C-l>", "<C-o>$")
 
--- preserve the copy buffer (when you y and virtualmode paste) 
+-- preserve the copy buffer (when you y and virtualmode paste)
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 -- bulk rename in buffer

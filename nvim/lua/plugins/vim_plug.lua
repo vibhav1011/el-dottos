@@ -6,11 +6,11 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 Plug 'ghifarit53/tokyonight-vim'
 --theme
 
-Plug 'sainnhe/everforest'
---theme everforest
-
-Plug 'AlexvZyl/nordic.nvim'
--- theme nightfox
+Plug 'cpea2506/one_monokai.nvim'
+-- one monokai theme
+--
+Plug 'rmehri01/onenord.nvim'
+-- one nord theme
 
 Plug('nvim-treesitter/nvim-treesitter', {
   ['do'] = function()
@@ -28,6 +28,10 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'itchyny/vim-gitbranch'
 -- get git branch name with gitbranch#name
+
+Plug ('williamboman/mason.nvim', {['do'] =':MasonUpdate'})
+-- my lsp just isn't fast enough
+
 
 Plug 'neovim/nvim-lspconfig'
 -- lsp config
@@ -54,6 +58,9 @@ Plug 'rcarriga/nvim-dap-ui'
 
 Plug 'lukas-reineke/indent-blankline.nvim'
 -- lines in indents to show context for long functions
+
+Plug 'seblj/nvim-tabline'
+-- nice tabs
 
 vim.call('plug#end')
 

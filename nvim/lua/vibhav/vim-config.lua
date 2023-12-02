@@ -12,6 +12,7 @@ vim.opt.showmatch = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = false
 vim.cmd(":highlight Cursorline cterm=bold ctermbg=black")
+vim.opt.colorcolumn = "120"
 
 -- line number vim.opttings
 vim.opt.number = true
@@ -27,8 +28,11 @@ vim.opt.scrolloff = 8
 vim.opt.title = true
 
 -- Enable Code Folding
-vim.opt.foldmethod = "indent"
-vim.opt.foldlevel = 99
+-- vim.opt.foldmethod = "indent"
+-- vim.opt.foldlevel = 99
+vim.opt.foldmethod= "expr"
+vim.opt.foldexpr= "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false
 
 -- Auto line wrapping
 vim.opt.wrap = true
@@ -50,3 +54,7 @@ vim.opt.compatible = false
 
 --compe pre-requisites
 vim.o.completeopt = "menuone,noselect"
+
+-- spellcheck
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true

@@ -84,17 +84,17 @@ vim.fn.sign_define('DapStopped', { text='', texthl='DapStopped', linehl='DapStop
 
 -- dap adapters for languages
 
--- Python 
+-- Python
 -- ======
 
 local function get_module()
 	local packages_path = vim.fn.getcwd() .. '/.venv/lib/python3.10/site-packages'
 	if vim.fn.isdirectory(packages_path .. '/uvicorn') == 1 then
-		return 'uvicorn' 
+		return 'uvicorn'
 
 	elseif vim.fn.isdirectory(packages_path .. '/flask') == 1 then
-		return 'flask' 
-	
+		return 'flask'
+
 	else
 		return ''
 	end
@@ -127,29 +127,29 @@ dap.configurations.python = {
 			local module = get_module()
 			if module == 'uvicorn' then
 				return {
-					string.format('app:%s', 
-					os.getenv('APP_INSTANCE_NAME')), 
-					'--host', 
-					'0.0.0.0', 
-					'--port', 
+					string.format('app:%s',
+					os.getenv('APP_INSTANCE_NAME')),
+					'--host',
+					'0.0.0.0',
+					'--port',
 					os.getenv('PORT'),
 					-- '--reload'
 					}
 			elseif module == 'flask' then
 				return {
-					'run', 
-					'--port', 
+					'run',
+					'--port',
 					os.getenv('PORT'),
-					-- '--reload', 
+					-- '--reload',
 				}
-			else 
+			else
 				return {}
 			end
 		end;
 	},
 }
 
--- can use this to launch specific debug configs 
+-- can use this to launch specific debug configs
 
  table.insert(dap.configurations.python, {
    type = 'python',
@@ -160,7 +160,7 @@ dap.configurations.python = {
    module = 'flask',  -- NOTE: Adapt path to manage.py as needed
    args = {
 	   'run',
- 	  '--port', 
+ 	  '--port',
 	  '8000',
  	  -- '--reload'
    }
@@ -175,12 +175,34 @@ dap.configurations.python = {
 --    pythonPath = vim.fn.getcwd() .. '/.venv/bin/python',
 --    module = 'uvicorn',  -- NOTE: Adapt path to manage.py as needed
 --    args = {
---  	  string.format('app:%s', 
---  	  os.getenv('APP_INSTANCE_NAME')), 
---  	  '--host', 
---  	  '0.0.0.0', 
---  	  '--port', 
+--  	  string.format('app:%s',
+--  	  os.getenv('APP_INSTANCE_NAME')),
+--  	  '--host',
+--  	  '0.0.0.0',
+--  	  '--port',
 --  	  os.getenv('PORT'),
 --  	  -- '--reload'
 --    }
 --  })
+
+-- Go
+-- ==
+dap.adapters.go = {
+	type = 'server',
+	port = '${port}',
+	executable = {
+		command = os.getenv('HOME') ..'/go/dlv',
+		args = { 'dap', '-l', '127.0.0.1:${port}'}
+	};
+}
+
+dap.configurations.go = {
+
+	{
+		-- The first three options are required by nvim-dap
+		type = 'go'; -- the type here established the link to the adapter definition: `dap.adapters.python`
+		request = 'launch';
+		name = "Launch file";
+		program = vim.fn.getcwd() .. '/main.go'
+	}
+}
